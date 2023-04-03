@@ -586,6 +586,17 @@ Create the name of the dag processor service account to use
 {{- end -}}
 
 {{/*
+Create the name of the multiple dag processor service account to use
+*/}}
+{{- define "multipleDagProcessor.serviceAccountName" -}}
+{{- if .Processor.serviceAccount.create -}}
+    {{ default (printf "%s-%s-dag-processor" (include "airflow.fullname" .Global) .Processor.name) .Processor.serviceAccount.name }}
+{{- else -}}
+    {{ default "default" .Processor.serviceAccount.name }}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Create the name of the pgbouncer service account to use
 */}}
 {{- define "pgbouncer.serviceAccountName" -}}
