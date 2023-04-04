@@ -21,7 +21,7 @@
 {{- if semverCompare ">=2.3.0" .Values.airflowVersion }}
 {{- if .Values.multipleDagProcessor.enabled }}
 {{- if .Values.dagProcessor.enabled }}
-{{- fail "Invalid function type" }}
+{{- fail "Cannot have both dagProcessor and multipleDagProcessor enabled" }}
 {{- end}}
 {{- $Global := . }}
 {{- range $i, $processor := .Values.multipleDagProcessor.processors }}
